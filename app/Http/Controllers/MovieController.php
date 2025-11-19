@@ -241,7 +241,7 @@ class MovieController extends Controller
         return view('schedule.detail-film', compact('movie'));
     }
 
-    public function nonActivated($id)
+    public function nonactivated($id)
     {
 
         // Non-aktifkan film

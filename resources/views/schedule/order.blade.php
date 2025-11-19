@@ -73,9 +73,8 @@
         </div>
     </div>
     <input type="hidden" name="ticket_id" value="{{ $ticket['id'] }}" id="ticket_id">
-    <div class="fixed-bottom w-100 p-4 text-center" style="background: #112646; color: white; cursor: pointer;"
-        onclick="createQR()"><b>BAYAR
-            SEKARANG</b></div>
+    <div class="fixed-bottom w-100 p-4 text-white text-center" style="background: #112646; cursor: pointer;"
+        onclick="createQR()"><b>BAYAR SEKARANG</b></div>
 @endsection
 
 @push('script')
@@ -89,12 +88,11 @@
 
         function createQR() {
             let data = {
-                _token: "{{ csrf_token }}",
+                _token: "{{ csrf_token() }}",
                 promo_id: promoId,
-                ticket_id: $ {
-                    "#ticket_id"
-                }.val()
-            }
+                ticket_id: $("#ticket_id").val() // hapus spasi antara $ dan {
+            };
+
             $.ajax({
                 url: "{{ route('tickets.payment') }}",
                 type: "POST",

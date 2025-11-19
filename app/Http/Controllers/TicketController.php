@@ -8,7 +8,7 @@ use App\Models\Schedule;
 use App\Models\Promo;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-
+use Illuminate\Support\Facades\Storage;
 
 class TicketController extends Controller
 {
@@ -86,16 +86,17 @@ class TicketController extends Controller
         $filename = $kodeBarcode . '.svg';
         // tempat menyimpan barcode public/barcodes
         $path = 'barcodes/' . $filename;
+        Storage::disk('public')->put($path, $qrImage);
 
         $createData = TicketPayment::create([
             'ticket_id' => $request->ticket_id,
             'barcode' => $path,
-            'status' => 'procces',
+            'status' => 'process',
             'booked_date' => now()
         ]);
 
         $ticket = Ticket::find($request->ticket_id);
-        if ($request->promo_id != null) {
+        if ($request->promo_id != NULL) {
             $promo = Promo::find($request->promo_id);
             if ($promo['type'] == 'percent') {
                 $discount = $ticket['total_price'] * ($promo['discount'] / 100);
@@ -103,13 +104,15 @@ class TicketController extends Controller
                 $discount = $promo['discount'];
             }
             $totalPrice = $ticket['total_price'] - $discount;
-        }
 
-        // update total harga setelah menggunakan diskon
+            // update total harga setelah menggunakan diskon
         $updateTicket = Ticket::where('id', $request->ticket_id)->update([
             'promo' => $request->promo_id,
             'total_price' => $totalPrice
         ]);
+        }
+
+        
 
         return response()->json([
             'message' => 'Berhasil membuat pesanan tiket sementara!',
@@ -117,9 +120,10 @@ class TicketController extends Controller
         ]);
     }
 
-    public function ticketPaymentPage()
+    public function ticketPaymentPage($ticketId)
     {
-        //
+        $ticket = Ticket::where('id', $ticketId)->with(['promo', 'ticketPayment', 'schedule'])->first();
+        return view('schedule.payment', compact('ticket'));
     }
     /**
      * Display the specified resource.

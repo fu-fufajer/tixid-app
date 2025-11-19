@@ -170,6 +170,7 @@ Route::middleware('isStaff')->prefix('/staff')->name('staff.')->group(function (
         return view('staff.dashboard');
     })->name('dashboard');
 
+    // data promo
     Route::prefix('/promo')->name('promos.')->group(function () {
         // index
         Route::get('/', [PromoController::class, 'index'])->name('index');
@@ -197,6 +198,7 @@ Route::middleware('isStaff')->prefix('/staff')->name('staff.')->group(function (
         Route::get('datatables', [PromoController::class, 'datatables'])->name('datatables');
     });
 
+    // data schedule
     Route::prefix('/schedules')->name('schedules.')->group(function () {
         Route::get('/', [ScheduleController::class, 'index'])->name('index');
         // store\

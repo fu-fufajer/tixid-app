@@ -46,7 +46,7 @@ class Ticket extends Model
     }
 
     // relasi ticket payment
-    public function ticketsPayment()
+    public function ticketPayment()
     {
         return $this->hasOne(TicketPayment::class);
     }
