@@ -1,61 +1,77 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Tixid App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Tixid App adalah sebuah aplikasi berbasis **Laravel** yang dikembangkan untuk kebutuhan sekolah SMK Wikrama Bogor, khususnya dalam kelas **RPL**. Proyek ini dikerjakan selama **4 bulan** mengikuti tutorial yang diberikan oleh sekolah.
 
-## About Laravel
+Aplikasi ini memiliki beberapa fitur utama yang memudahkan pengolahan data dan visualisasi, antara lain:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Maatwebsite Excel**: Untuk import dan export data dalam format Excel.
+- **PDF**: Untuk generate sejarah tiket dalam format PDF.
+- **ChartJS**: Untuk visualisasi data dalam bentuk grafik.
+- **jQuery & AJAX**: Untuk interaksi dinamis pada halaman web tanpa reload.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Fitur
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **Import & Export Excel**  
+   Memudahkan pengelolaan data melalui file Excel, termasuk menyimpan data ke database dan mengekspor data kembali ke Excel.
 
-## Learning Laravel
+2. **Generate PDF**  
+   Membuat sejarah tiket dalam format PDF yang rapi dan mudah dibagikan.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. **Visualisasi Data dengan ChartJS**  
+   Menampilkan data dalam bentuk grafik sehingga lebih mudah dianalisis.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+4. **Interaksi Dinamis dengan jQuery & AJAX**  
+   Mempercepat proses input data dan menampilkan informasi tanpa harus memuat ulang halaman.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Instalasi
 
-## Laravel Sponsors
+1. Pastikan **PHP**, **Composer**, dan **MySQL** sudah terinstall di komputer.
+2. Clone repository ini:
+   ```php
+   git clone https://github.com/fu-fufajer/tixid-app.git
+   ```
+3. Masuk ke folder proyek:
+    ```php
+    cd tixid-app
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4. Install dependensi Laravel:
+    ```php
+    composer install
+    ```
 
-### Premium Partners
+5. Copy file .env.example menjadi .env dan atur konfigurasi database.
+    ```php
+    cp .env.example .env
+    ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+6. Generate key Laravel:
+    ```php
+    php artisan key:generate
+    ```
 
-## Contributing
+7. Jalankan migrasi dan seed database:
+    ```php
+    php artisan migrate
+    php artisan db:seed --class=UserSeeder
+    ```
+> Untuk akun admin, emailnya admin@gmail.com, passwordnya adminID
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+8. Buat Symlink Storage
+    ```php
+    php artisan storage:link
+    ```
 
-## Code of Conduct
+9. Jalankan server:
+    ```php
+    php artisan serve
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Kontribusi
+Proyek ini dikembangkan untuk pembelajaran di SMK Wikrama Bogor, jadi kontribusi dari pihak luar tidak diterima saat ini. Namun, kamu dapat belajar dari kode yang ada untuk meningkatkan kemampuan Laravel, Excel, PDF, ChartJS, jQuery, dan AJAX.
 
-## Security Vulnerabilities
+## Lisensi
+Proyek ini dibuat untuk keperluan edukasi dan tidak memiliki lisensi khusus. Dapat digunakan sebagai referensi belajar pribadi.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Tixid App – Proyek RPL SMK Wikrama Bogor
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
