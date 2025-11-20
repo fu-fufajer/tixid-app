@@ -40,10 +40,19 @@
                         @if ($nomorKursi == 7)
                             <div style="width: 45px"></div>
                         @endif
-                        <div style="background: #112646; color: white; text-align: center; padding-top: 10px; width: 45px; height: 45px; border-radius: 10px; margin: 10px 3px; cursor: pointer;"
-                            onclick="selectedSeats('{{ $schedule->price }}', '{{ $baris }}', '{{ $nomorKursi }}', this)">
-                            {{ $baris }}-{{ $nomorKursi }}
-                        </div>
+                        @php
+                            $seat = $baris . '-' . $nomorKursi;
+                        @endphp
+                        @if (in_array($seat, $seatsFormat))
+                            <div style="background: #b3b3b3; color: black; text-align: center; padding-top: 10px; width: 45px; height: 45px; border-radius: 10px; margin: 10px 3px; cursor: default">
+                                {{ $baris }}-{{ $nomorKursi }}
+                            </div>
+                        @else
+                            <div style="background: #112646; color: white; text-align: center; padding-top: 10px; width: 45px; height: 45px; border-radius: 10px; margin: 10px 3px; cursor: pointer;"
+                                onclick="selectedSeats('{{ $schedule->price }}', '{{ $baris }}', '{{ $nomorKursi }}', this)">
+                                {{ $baris }}-{{ $nomorKursi }}
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             @endforeach

@@ -46,12 +46,16 @@ Route::middleware('isUser')->group(function () {
     Route::get('/schedules/{scheduleId}/hours/{hourId}/show-seats', [TicketController::class, 'showSeats'])->name('schedules.seats');
 
     Route::prefix('/tickets')->name('tickets.')->group(function () {
+        Route::get('/', [TicketController::class, 'index'])->name('index');
         Route::post('/', [TicketController::class, 'store'])->name('store');
         Route::get('/{ticketId}/order', [TicketController::class, 'ticketOrder'])->name('order');
         // pembuatan barcode pembayaran
         Route::post('/payment', [TicketController::class, 'ticketPayment'])->name('payment');
         // halaman yang menampilkan qrcode
         Route::get('/{ticketId}/payment', [TicketController::class, 'ticketPaymentPage'])->name('payment.page');
+        Route::patch('/{ticketId}/payment', [TicketController::class, 'paymentProof'])->name('payment.proof');
+        Route::get('/{ticketId}/receipt', [TicketController::class, 'ticketReceipt'])->name('receipt');
+        Route::get('/{ticketId}/pdf', [TicketController::class, 'exportPdf'])->name('export_pdf');
     });
 });
 
@@ -72,7 +76,7 @@ Route::middleware('isGuest')->group(function () {
 
 // middleware isAdmin - Datamaster
 Route::middleware('isAdmin')->prefix('/admin')->name('admin.')->group(function () {
-
+    Route::get('/tickets/chart', [TicketController::class, 'chartData'])->name('tickets.chart');
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard'); // admin dashboard
@@ -108,22 +112,22 @@ Route::middleware('isAdmin')->prefix('/admin')->name('admin.')->group(function (
 
     // data pengguna
     Route::prefix('/staffs')->name('staffs.')->group(function () {
-        // index (/)
+        // index
         Route::get('/', [UserController::class, 'index'])->name('index');
-        // create.blade.php
+        // create
         Route::get('/create', function () {
             return view('admin.staff.create');
         })->name('create');
 
         // store
         Route::post('/store', [UserController::class, 'store'])->name('store');
-        // route edit
+        // edit
         Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
-        // route update
+        // update
         Route::put('/update/{id}', [UserController::class, 'update'])->name('update');
-        // route delete
+        // delete
         Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('delete');
-        // route export
+        // export
         Route::get('/export', [UserController::class, 'export'])->name('export');
         // trash
         Route::get('/trash', [UserController::class, 'trash'])->name('trash');
@@ -137,6 +141,8 @@ Route::middleware('isAdmin')->prefix('/admin')->name('admin.')->group(function (
 
     // data movie
     Route::prefix('/movies')->name('movies.')->group(function () {
+        // chart
+        Route::get('/chart', [MovieController::class, 'chartData'])->name('chart');
         // index
         Route::get('/', [MovieController::class, 'index'])->name('index');
         // create
@@ -148,7 +154,7 @@ Route::middleware('isAdmin')->prefix('/admin')->name('admin.')->group(function (
         // update
         Route::put('/update/{id}', [MovieController::class, 'update'])->name('update');
         // non-aktif button
-        Route::get('/non-activated/{id}', [MovieController::class, 'nonActivated'])->name('non-activated');
+        Route::patch('/non-activated/{id}', [MovieController::class, 'nonActivated'])->name('non-activated');
         // delete
         Route::delete('/delete/{id}', [MovieController::class, 'destroy'])->name('delete');
         // export

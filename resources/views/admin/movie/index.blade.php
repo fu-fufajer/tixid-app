@@ -23,40 +23,13 @@
                 <th>Aksi</th>
             </tr>
 
-            @foreach ($movies as $key => $item)
-                <tr>
-                    <td class="text-center">{{ $key + 1 }}</td>
-                    <td>
-                        {{-- memunculkan gambar yg diupload asset('storage/' . alamat) --}}
-                        <img src="{{ asset('storage/' . $item['poster']) }}" alt="{{ $item['title'] }}" width="120">
-                    </td>
-                    <td>{{ $item['title'] }}</td>
-                    <td>
-                        @if ($item['activated'] == 1)
-                            <span class="badge badge-success">aktif</span>
-                        @else
-                            <span class="badge badge-danger">tidak aktif</span>
-                        @endif
-                    </td>
-                    <td class="d-flex justify-content-center gap-2">
-                        {{-- onclick : menjalankan fungsi javascript ketika komponen di klik --}}
-                        <button class="btn btn-secondary" onclick="showModal({{ $item }})">Detail</button>
-                        <a href="{{ route('admin.movies.edit', $item['id']) }}" class="btn btn-primary">Edit</a>
-                        <form action="{{ route('admin.movies.delete', $item['id']) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Hapus</button>
-                        </form>
-                        {{-- jika activated true, munculkan opsi untuk non-aktif film --}}
-                        @if ($item['activated'] == 1)
-                            <a href="{{ route('admin.movies.non-activated', $item['id']) }}"
-                                class="btn btn-warning">Non-aktif</a>
-                        @else
-                            {{-- none --}}
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
         </table>
 
         <!-- Modal -->

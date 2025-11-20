@@ -78,7 +78,7 @@
                             <a class="nav-link" href="{{ route('cinemas.list') }}">Bioskop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Tiket</a>
+                            <a class="nav-link" href="{{ route('tickets.index') }}">Tiket</a>
                         </li>
                     @endif
                 </ul>
@@ -122,10 +122,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
         integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous">
     </script>
-
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.umd.min.js"></script>
-
+    {{-- CDN ChartJS --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     {{-- menyimpan konten dinamis bagian JS --}}
     @stack('script')
 </body>
