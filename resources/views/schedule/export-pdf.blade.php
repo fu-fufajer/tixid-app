@@ -44,7 +44,7 @@
     <div class="tickets-wrapper">
         @foreach ($ticket['rows_of_seats'] as $item)
             <div class="ticket-item">
-                <div class="ticket-headee">
+                <div class="ticket-header">
                     <div><b>{{ $ticket['schedule']['cinema']['name'] }}</b></div>
                     <div>
                         <h5 class="studio-title">STUDIO</h5>
